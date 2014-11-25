@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="JpegTest.bat" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LosslessJPEG\LosslessJPEG.csproj">

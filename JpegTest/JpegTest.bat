@@ -1,0 +1,1 @@
+JpegTest.exe > JpegTest.txt

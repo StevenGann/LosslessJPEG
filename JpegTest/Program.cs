@@ -40,54 +40,62 @@ namespace JpegTest
         double cr = 0;
         double bitPerPixel = 0;
 
+        //print original image
+        Console.WriteLine("Original Image");
+        JpegCodec.printIntArray(originalImage);
+
         for (int i = 1; i <= 7; i++) {
+            Console.WriteLine("=====================================================================");
             Console.WriteLine("\nCase " + i + ":");
-
-            //print original image
-            JpegCodec.printIntArray(originalImage);
-
+                        
             //encode the original method by different methods or cases
             JpegCodec.encode(originalImage, predictorImage, i);
 
             //print the encode image
+            Console.WriteLine("Coefficients after the Predictor");
             JpegCodec.printIntArray(predictorImage);
 
             //encode by the huffman table 
             JpegCodec.huffmanCodeEncoder(predictorImage, compressedImage);
 
             //print the huffman encode image
+            Console.WriteLine("Huffman Encoded compressed image in binary");
             JpegCodec.printStringArray(compressedImage);
 
             //decode by the huffman table
             JpegCodec.huffmanCodeDecoder(decoderImage, compressedImage);
 
             //print the huffman decode image
+            Console.WriteLine("Huffman Decoded");
             JpegCodec.printIntArray(decoderImage);
 
             //decode the huffman image by its specific method
             JpegCodec.decoder(decompressionImage, decoderImage, i);
 
             //print the final decode image
+            Console.WriteLine("Image after decompression");
             JpegCodec.printIntArray(decompressionImage);
 
             //calculate the compressed ratio
             cr = JpegCodec.compressionRatio(compressedImage);
             //print the compressed ratio
-            Console.WriteLine("Cr: " + cr);
+            Console.WriteLine("Compression Ratio: " + cr);
             
             //calculate the rms
             rms = JpegCodec.RMSCalculator(originalImage, decompressionImage);
             //print rms
-            Console.WriteLine("RMS: " + rms);
+            Console.WriteLine("Root Mean Square: " + rms);
 
             //calculate the bit per pixel
             bitPerPixel = JpegCodec.bitPixel(cr);
             //print bit per pixel
-            Console.WriteLine("bit/pixel: " + bitPerPixel);
+            Console.WriteLine("Bits Per Pixel: " + bitPerPixel);
             
             Console.WriteLine();
-            Console.Read();
+            //Console.Read();
+            
         }
+        Console.Read();
         }
     }
 }
